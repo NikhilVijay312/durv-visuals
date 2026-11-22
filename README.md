@@ -1,5 +1,6 @@
 # 🎬 Studio Portfolio Website
-n**Live:** https://nikhilvijay312.github.io/durv-visuals/  ·  **Admin:** https://nikhilvijay312.github.io/durv-visuals/admin.html
+
+**Live:** https://nikhilvijay312.github.io/durv-visuals/  ·  **Admin:** https://nikhilvijay312.github.io/durv-visuals/admin.html
 
 > Admin → Settings me: Username `NikhilVijay312`, Repository `durv-visuals`, Branch `main`.
 

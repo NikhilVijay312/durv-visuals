@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Admin Panel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+
+  <!-- LOGIN -->
+  <section id="login" class="login">
+    <form id="loginForm" class="card">
+      <h1>Admin <em>Login</em></h1>
+      <p class="muted">Portfolio manage karne ke liye password daalo.</p>
+      <input type="password" id="pw" placeholder="Password" autocomplete="current-password" required />
+      <button class="btn">Login →</button>
+      <p class="err" id="loginErr"></p>
+      <a href="index.html" class="muted small">← Website pe wapas</a>
+    </form>
+  </section>
+
+  <!-- APP -->
+  <div id="app" hidden>
+    <header class="top">
+      <strong>Admin <em>Panel</em></strong>
+      <nav class="tabs">
+        <button data-tab="upload" class="active">⬆ Upload</button>
+        <button data-tab="manage">🖼 Manage</button>
+        <button data-tab="settings">⚙ Settings</button>
+      </nav>
+      <div class="top-r"><a href="index.html" target="_blank" class="btn-ghost">View Site ↗</a><button id="logout" class="btn-ghost">Logout</button></div>
+    </header>
+
+    <div class="banner" id="banner" hidden>⚠ GitHub abhi connect nahi hai. Pehle <b>Settings</b> tab me repo + token daalo — tabhi upload live website pe jayega.</div>
+
+    <!-- UPLOAD -->
+    <main class="panel" id="tab-upload">
+      <h2>Photos Upload Karo</h2>
+      <label class="drop" id="drop">
+        <input type="file" id="files" accept="image/*" multiple hidden />
+        <span class="drop-ico">📷</span>
+        <b>Yahan photos drag &amp; drop karo</b>
+        <span class="muted">ya click karke choose karo · JPG / PNG / WEBP</span>
+      </label>
+      <div class="opts">
+        <label>Default Category <select id="defCat"></select></label>
+        <label class="chk"><input type="checkbox" id="compress" checked /> Auto-compress (fast loading, max 2000px)</label>
+      </div>
+      <div class="queue" id="queue"></div>
+      <button class="btn" id="uploadBtn" hidden>⬆ Upload All</button>
+
+      <hr />
+      <h2>Video Add Karo (YouTube link)</h2>
+      <form class="video-form" id="videoForm">
+        <input id="vUrl" placeholder="https://youtube.com/watch?v=..." required />
+        <input id="vTitle" placeholder="Title (e.g. Rohan & Priya Wedding Film)" required />
+        <select id="vCat"></select>
+        <button class="btn">+ Add Video</button>
+      </form>
+    </main>
+
+    <!-- MANAGE -->
+    <main class="panel" id="tab-manage" hidden>
+      <div class="row-between">
+        <h2>Portfolio Items <span class="pill" id="count">0</span></h2>
+        <div><button class="btn-ghost" id="reload">↻ Refresh</button> <button class="btn" id="saveAll">💾 Save Changes</button></div>
+      </div>
+      <p class="muted small">Title / category badlo, ↑↓ se order badlo, phir <b>Save Changes</b> dabao. Delete turant save hota hai.</p>
+      <div class="grid" id="grid"></div>
+    </main>
+
+    <!-- SETTINGS -->
+    <main class="panel" id="tab-settings" hidden>
+      <h2>GitHub Connection</h2>
+      <p class="muted">Upload ki hui photos seedha aapke GitHub repo me save hoti hain. Repo update hote hi Vercel / Netlify website ko auto re-deploy kar dete hain (~30–60 sec).</p>
+      <form id="ghForm" class="settings">
+        <label>GitHub Username / Org <input id="ghOwner" placeholder="your-username" required /></label>
+        <label>Repository Name <input id="ghRepo" placeholder="studio-portfolio" required /></label>
+        <label>Branch <input id="ghBranch" value="main" required /></label>
+        <label>Personal Access Token <input id="ghToken" type="password" placeholder="github_pat_..." required /></label>
+        <p class="muted small">Token sirf isi browser me save hota hai (website code me nahi). Token kaise banaye — README.md dekho.</p>
+        <div><button class="btn">Save &amp; Test Connection</button> <button type="button" class="btn-ghost" id="ghClear">Disconnect</button></div>
+        <p id="ghStatus"></p>
+      </form>
+
+      <hr />
+      <h2>Password Badlo</h2>
+      <p class="muted small">Naya password likho → hash copy karo → <code>js/config.js</code> me <code>adminPasswordHash</code> replace karo → git push.</p>
+      <div class="video-form">
+        <input id="newPw" type="text" placeholder="Naya password" />
+        <button class="btn" id="genHash" type="button">Generate Hash</button>
+      </div>
+      <code class="hash" id="hashOut"></code>
+
+      <hr />
+      <h2>Backup</h2>
+      <button class="btn-ghost" id="exportJson">⬇ Download gallery.json</button>
+    </main>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

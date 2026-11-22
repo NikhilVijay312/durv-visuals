@@ -1,0 +1,10 @@
+[
+  { "id": "s1", "type": "image", "src": "https://picsum.photos/seed/wed-rp/800/1100", "title": "Rohan & Priya — A Love Story", "category": "wedding" },
+  { "id": "s2", "type": "image", "src": "https://picsum.photos/seed/pre-ma/800/600", "title": "Meera & Arjun", "category": "prewedding" },
+  { "id": "s3", "type": "image", "src": "https://picsum.photos/seed/tvc-lux/800/900", "title": "Luxury Brand TVC", "category": "commercial" },
+  { "id": "s4", "type": "image", "src": "https://picsum.photos/seed/corp-tc/800/560", "title": "TechCorp Profile Film", "category": "corporate" },
+  { "id": "s5", "type": "image", "src": "https://picsum.photos/seed/wed-av/800/1000", "title": "Anjali & Vikram — Destination Wedding", "category": "wedding" },
+  { "id": "s6", "type": "image", "src": "https://picsum.photos/seed/ind-doc/800/600", "title": "Infrastructure Doc", "category": "industrial" },
+  { "id": "s7", "type": "image", "src": "https://picsum.photos/seed/reel-fash/800/1200", "title": "Fashion Reel", "category": "social" },
+  { "id": "s8", "type": "image", "src": "https://picsum.photos/seed/pre-nr/800/700", "title": "Neha & Rahul — Udaipur", "category": "prewedding" }
+]

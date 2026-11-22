@@ -1,4 +1,7 @@
 # 🎬 Studio Portfolio Website
+n**Live:** https://nikhilvijay312.github.io/durv-visuals/  ·  **Admin:** https://nikhilvijay312.github.io/durv-visuals/admin.html
+
+> Admin → Settings me: Username `NikhilVijay312`, Repository `durv-visuals`, Branch `main`.
 
 Simple HTML + CSS + JS portfolio — koi build step nahi, koi server nahi.
 
@@ -21,14 +24,14 @@ Text (About, Services, Testimonials, FAQ) seedha `index.html` me edit karo.
 Hero / About ki photo badalni ho to `css/style.css` me `.hero-bg` ka URL aur `index.html` me about wali `<img>` badlo (apni photo `images/` me rakh ke `images/hero.jpg` likho).
 
 ## 2. GitHub pe daalo
-1. https://github.com pe free account banao → **New repository** → naam e.g. `studio-portfolio` → **Public** → Create.
+1. https://github.com pe free account banao → **New repository** → naam e.g. `durv-visuals` → **Public** → Create.
 2. Is folder me terminal kholo:
 ```
 git init
 git add .
 git commit -m "First version"
 git branch -M main
-git remote add origin https://github.com/YOUR-USERNAME/studio-portfolio.git
+git remote add origin https://github.com/YOUR-USERNAME/durv-visuals.git
 git push -u origin main
 ```
 
@@ -39,7 +42,7 @@ git push -u origin main
 | **Vercel** (recommended) | vercel.com → GitHub se login → *Add New → Project* → repo choose → **Deploy** (Framework: *Other*) | `your-name.vercel.app` |
 | **Netlify** | netlify.com → *Add new site → Import from Git* → repo → Deploy | `your-name.netlify.app` |
 | **Cloudflare Pages** | dash.cloudflare.com → Workers & Pages → Pages → Connect to Git | `your-name.pages.dev` |
-| **GitHub Pages** | Repo → Settings → Pages → Branch: `main` / root → Save | `username.github.io/studio-portfolio` |
+| **GitHub Pages** | Repo → Settings → Pages → Branch: `main` / root → Save | `username.github.io/durv-visuals` |
 
 Sab free hain, aur har `git push` (ya admin panel se upload) ke baad website **automatic update** ho jaati hai. Custom domain (e.g. `yourstudio.in`) bhi free me jod sakte ho.
 

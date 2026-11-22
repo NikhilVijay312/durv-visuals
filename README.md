@@ -1,6 +1,6 @@
 # 🎬 Studio Portfolio Website
 
-**Live:** https://nikhilvijay312.github.io/durv-visuals/  ·  **Admin:** https://nikhilvijay312.github.io/durv-visuals/admin.html
+**Live:** https://durv-visuals.vercel.app  ·  **Admin:** https://durv-visuals.vercel.app/admin.html  ·  (backup: https://nikhilvijay312.github.io/durv-visuals/)
 
 > Admin → Settings me: Username `NikhilVijay312`, Repository `durv-visuals`, Branch `main`.
 

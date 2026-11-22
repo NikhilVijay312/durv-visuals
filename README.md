@@ -10,7 +10,8 @@ js/main.js        → website ka logic
 js/admin.js       → admin panel ka logic
 css/style.css     → design
 data/gallery.json → portfolio items ki list (admin panel isse update karta hai)
-data/site.json    → brand name, hero, about, contact (admin panel ke "Site" tab se edit hota hai)
+data/site.json    → brand name, hero, about, contact, theme (admin panel ke "Site" tab se edit hota hai)
+js/themes.js      → theme colour presets aur heading fonts (naya theme yahan add kar sakte ho)
 images/           → upload ki hui photos yahan save hoti hain
 ```
 

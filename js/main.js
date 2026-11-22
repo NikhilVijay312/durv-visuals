@@ -7,6 +7,8 @@
   const safe = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const rich = s => safe(String(s ?? "").replace(/{brand}/g, S.brand || "").replace(/{founder}/g, S.founder || "")).replace(/\*(.+?)\*/g, "<em>$1</em>").replace(/\n/g, "<br />"); // *word* = gold italic
 
+  if (window.applyTheme) applyTheme(S);
+
   /* ---------- Fill config values ---------- */
   $$("[data-brand]").forEach(el => (el.textContent = S.brand));
   $$("[data-tagline]").forEach(el => (el.textContent = S.tagline));

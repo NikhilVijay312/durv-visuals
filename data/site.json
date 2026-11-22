@@ -17,5 +17,8 @@
   "aboutText": "Storytelling is our passion. Founded by {founder}, a dedicated visual artist, the studio exists to turn ordinary moments into cinematic experiences.\n\nFrom intimate weddings to bold commercials and corporate films, we craft every frame with emotion, light and rhythm — so your story feels as big as it felt in the moment.\n\nEvery project is a journey, and every client is the hero of their own story.",
   "statFilms": 500,
   "statClients": 50,
-  "statYears": 3
+  "statYears": 3,
+  "theme": "dark-gold",
+  "accent": "",
+  "font": "Playfair Display"
 }

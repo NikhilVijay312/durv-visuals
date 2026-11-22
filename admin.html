@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex, nofollow" />
   <title>Admin Panel</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/admin.css?v=2" />
+  <link rel="stylesheet" href="css/admin.css?v=3" />
 </head>
 <body>
 
@@ -81,6 +81,19 @@
       </div>
       <p class="muted small">Yahan jo badloge wo poori website pe dikhega (save ke 1–2 min baad). Tip: <code>*word*</code> likhoge to wo gold italic dikhega.</p>
       <form id="siteForm" class="site-form" onsubmit="return false">
+        <fieldset><legend>Theme</legend>
+          <div class="wide theme-grid" id="themeGrid"></div>
+          <label>Accent Colour <span class="muted small">(khali = theme ka default)</span>
+            <span class="img-field"><input type="color" id="accentPick" /><input name="accent" placeholder="#c9a55c" /><button type="button" class="btn-ghost" id="accentReset">Reset</button></span>
+          </label>
+          <label>Heading Font <select name="font" id="fontSel"></select></label>
+          <div class="wide theme-preview" id="themePreview">
+            <small>Preview</small>
+            <h3>We Turn <em>Moments</em> Into Stories</h3>
+            <p>Ye text aur button aapki website pe aise dikhenge.</p>
+            <span class="tp-btn">Hire Us</span> <span class="tp-ghost">Watch Showreel</span>
+          </div>
+        </fieldset>
         <fieldset><legend>Brand</legend>
           <label>Studio / Brand Name <input name="brand" /></label>
           <label>Founder Name <input name="founder" /></label>
@@ -147,7 +160,8 @@
 
   <div class="toast" id="toast"></div>
 
-  <script src="js/config.js?v=2"></script>
-  <script src="js/admin.js?v=2"></script>
+  <script src="js/config.js?v=3"></script>
+  <script src="js/themes.js?v=3"></script>
+  <script src="js/admin.js?v=3"></script>
 </body>
 </html>

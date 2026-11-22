@@ -243,19 +243,42 @@
   const SITE_PATH = "data/site.json";
   let site = {}, siteSha = null, upTarget = null;
   const siteForm = $("#siteForm");
+  const esc2 = esc;
+  $("#themeGrid").innerHTML = Object.entries(THEMES).map(([k, t]) => `
+    <label class="theme-card"><input type="radio" name="theme" value="${k}" />
+      <div class="sw"><i style="background:${t.bg}"></i><i style="background:${t.card}"></i><i style="background:${t.accent}"></i><i style="background:${t.text}"></i></div>
+      <span>${esc2(t.name)}</span></label>`).join("");
+  $("#fontSel").innerHTML = Object.keys(FONTS).map(f => `<option>${f}</option>`).join("");
+  function themeSettings() {
+    return { theme: (siteForm.querySelector('[name=theme]:checked') || {}).value || "dark-gold", accent: siteForm.elements.accent.value.trim(), font: siteForm.elements.font.value };
+  }
+  function refreshTheme() {
+    const ts = themeSettings();
+    applyTheme(ts, $("#themePreview"));
+    $("#accentPick").value = /^#[0-9a-f]{6}$/i.test(ts.accent) ? ts.accent : (THEMES[ts.theme] || THEMES["dark-gold"]).accent;
+  }
+  $("#accentPick").addEventListener("input", e => { siteForm.elements.accent.value = e.target.value; refreshTheme(); });
+  $("#accentReset").onclick = () => { siteForm.elements.accent.value = ""; refreshTheme(); };
+  siteForm.addEventListener("change", refreshTheme);
   async function loadSite() {
     try {
       if (gh()) { const f = await api(SITE_PATH); siteSha = f.sha; site = JSON.parse(textFromB64(f.content)); }
       else site = await (await fetch(SITE_PATH + "?v=" + Date.now())).json();
     } catch (e) { if (String(e.message).startsWith("404")) { site = {}; siteSha = null; } else toast("Site settings load error: " + e.message, true); }
     site = Object.assign({}, S, site);
-    [...siteForm.elements].forEach(el => { if (el.name) el.value = site[el.name] ?? ""; });
-    refreshPrev();
+    if (!THEMES[site.theme]) site.theme = "dark-gold";
+    [...siteForm.elements].forEach(el => {
+      if (!el.name) return;
+      if (el.type === "radio") el.checked = el.value === site[el.name];
+      else el.value = site[el.name] ?? "";
+    });
+    if (!siteForm.elements.font.value) siteForm.elements.font.value = "Playfair Display";
+    refreshPrev(); refreshTheme();
   }
   function refreshPrev() {
     document.querySelectorAll("[data-prev]").forEach(img => { const v = siteForm.elements[img.dataset.prev].value.trim(); img.src = v ? srcUrl(v) : ""; });
   }
-  siteForm.addEventListener("input", e => { if (e.target.name === "heroImage" || e.target.name === "aboutImage") refreshPrev(); });
+  siteForm.addEventListener("input", e => { if (e.target.name === "heroImage" || e.target.name === "aboutImage") refreshPrev(); if (e.target.name === "accent") refreshTheme(); });
   siteForm.addEventListener("click", e => { const k = e.target.dataset.upimg; if (k) { upTarget = k; $("#siteImgFile").click(); } });
   $("#siteImgFile").onchange = async e => {
     const file = e.target.files[0]; e.target.value = "";
@@ -274,7 +297,11 @@
   $("#saveSite").onclick = async () => {
     if (!gh()) return toast("Pehle Settings me GitHub connect karo", true);
     const out = {};
-    [...siteForm.elements].forEach(el => { if (el.name) out[el.name] = el.type === "number" ? (el.value === "" ? "" : +el.value) : el.value.trim(); });
+    [...siteForm.elements].forEach(el => {
+      if (!el.name || (el.type === "radio" && !el.checked)) return;
+      out[el.name] = el.type === "number" ? (el.value === "" ? "" : +el.value) : el.value.trim();
+    });
+    if (out.accent && !/^#[0-9a-f]{6}$/i.test(out.accent)) return toast("Accent colour #rrggbb format me ho (e.g. #c9a55c)", true);
     if (!out.brand) return toast("Brand name khali nahi ho sakta", true);
     out.whatsapp = String(out.whatsapp).replace(/\D/g, "");
     const btn = $("#saveSite"); btn.disabled = true;

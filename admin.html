@@ -29,6 +29,7 @@
       <nav class="tabs">
         <button data-tab="upload" class="active">⬆ Upload</button>
         <button data-tab="manage">🖼 Manage</button>
+        <button data-tab="site">✏ Site</button>
         <button data-tab="settings">⚙ Settings</button>
       </nav>
       <div class="top-r"><a href="index.html" target="_blank" class="btn-ghost">View Site ↗</a><button id="logout" class="btn-ghost">Logout</button></div>
@@ -70,6 +71,49 @@
       </div>
       <p class="muted small">Title / category badlo, ↑↓ se order badlo, phir <b>Save Changes</b> dabao. Delete turant save hota hai.</p>
       <div class="grid" id="grid"></div>
+    </main>
+
+    <!-- SITE CUSTOMIZE -->
+    <main class="panel" id="tab-site" hidden>
+      <div class="row-between">
+        <h2>Website Customize Karo</h2>
+        <button class="btn" id="saveSite">💾 Save Site</button>
+      </div>
+      <p class="muted small">Yahan jo badloge wo poori website pe dikhega (save ke 1–2 min baad). Tip: <code>*word*</code> likhoge to wo gold italic dikhega.</p>
+      <form id="siteForm" class="site-form" onsubmit="return false">
+        <fieldset><legend>Brand</legend>
+          <label>Studio / Brand Name <input name="brand" /></label>
+          <label>Founder Name <input name="founder" /></label>
+          <label>Tagline <input name="tagline" /></label>
+          <label>Location <input name="location" /></label>
+        </fieldset>
+        <fieldset><legend>Hero (Top Section)</legend>
+          <label class="wide">Heading <textarea name="heroTitle" rows="2"></textarea></label>
+          <label class="wide">Sub-line <input name="heroSub" /></label>
+          <label class="wide">Background Image
+            <span class="img-field"><img data-prev="heroImage" alt="" /><input name="heroImage" /><button type="button" class="btn-ghost" data-upimg="heroImage">⬆ Upload</button></span>
+          </label>
+          <label>Showreel (YouTube link) <input name="showreel" placeholder="https://youtube.com/watch?v=..." /></label>
+        </fieldset>
+        <fieldset><legend>About</legend>
+          <label class="wide">About Text <span class="muted small">(paragraphs ke beech ek khali line · <code>{founder}</code> / <code>{brand}</code> apne aap naam ban jayega)</span><textarea name="aboutText" rows="7"></textarea></label>
+          <label class="wide">About Photo
+            <span class="img-field"><img data-prev="aboutImage" alt="" /><input name="aboutImage" /><button type="button" class="btn-ghost" data-upimg="aboutImage">⬆ Upload</button></span>
+          </label>
+          <label>Films Crafted <input name="statFilms" type="number" min="0" /></label>
+          <label>Happy Clients <input name="statClients" type="number" min="0" /></label>
+          <label>Years <input name="statYears" type="number" min="0" /></label>
+        </fieldset>
+        <fieldset><legend>Contact &amp; Social</legend>
+          <label>Email <input name="email" type="email" /></label>
+          <label>Phone <input name="phone" /></label>
+          <label>WhatsApp Number <span class="muted small">(91 ke saath, bina +)</span><input name="whatsapp" /></label>
+          <label>Instagram URL <input name="instagram" /></label>
+          <label>YouTube URL <input name="youtube" /></label>
+          <label>LinkedIn URL <input name="linkedin" /></label>
+        </fieldset>
+      </form>
+      <input type="file" id="siteImgFile" accept="image/*" hidden />
     </main>
 
     <!-- SETTINGS -->

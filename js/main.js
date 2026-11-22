@@ -1,11 +1,24 @@
-(() => {
-  const S = window.SITE || {};
+(async () => {
+  // config.js = defaults; data/site.json = admin panel se edit hone wali settings (override)
+  const saved = await fetch("data/site.json?v=" + Date.now()).then(r => (r.ok ? r.json() : {})).catch(() => ({}));
+  const S = Object.assign({}, window.SITE, saved);
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+  const safe = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const rich = s => safe(String(s ?? "").replace(/{brand}/g, S.brand || "").replace(/{founder}/g, S.founder || "")).replace(/\*(.+?)\*/g, "<em>$1</em>").replace(/\n/g, "<br />"); // *word* = gold italic
 
   /* ---------- Fill config values ---------- */
   $$("[data-brand]").forEach(el => (el.textContent = S.brand));
   $$("[data-tagline]").forEach(el => (el.textContent = S.tagline));
+  if (S.brand) document.title = `${S.brand} — ${S.tagline}`;
+  if (S.heroTitle) $("#heroTitle").innerHTML = rich(S.heroTitle);
+  if (S.heroSub) $("#heroSub").textContent = S.heroSub;
+  if (S.heroImage) $("#heroBg").style.backgroundImage = `url("${encodeURI(S.heroImage)}")`;
+  if (S.aboutImage) $("#aboutImg").src = S.aboutImage;
+  if (S.aboutText) $("#aboutText").innerHTML = S.aboutText.split(/\n\s*\n/).map(p => `<p>${rich(p.trim())}</p>`).join("");
+  $$("[data-founder]").forEach(el => (el.textContent = S.founder || ""));
+  [["statFilms", "#statFilms"], ["statClients", "#statClients"], ["statYears", "#statYears"]].forEach(([k, sel]) => { if (S[k] !== undefined && S[k] !== "") $(sel).dataset.to = +S[k] || 0; });
+  if (S.statYears) $("#yearsBadge").textContent = S.statYears + "+";
   $("#year").textContent = new Date().getFullYear();
   const wa = `https://wa.me/${S.whatsapp}`;
   $("#cEmail").textContent = S.email; $("#cEmail").href = `mailto:${S.email}`;
@@ -15,12 +28,13 @@
   const soc = { instagram: "IG", youtube: "YT", linkedin: "IN" };
   $("#socials").innerHTML = Object.entries(soc)
     .filter(([k]) => S[k])
-    .map(([k, t]) => `<a href="${S[k]}" target="_blank" rel="noopener" aria-label="${k}">${t}</a>`).join("");
+    .map(([k, t]) => `<a href="${safe(S[k])}" target="_blank" rel="noopener" aria-label="${k}">${t}</a>`).join("");
   $("#projType").innerHTML = Object.values(S.categories).map(c => `<option>${c}</option>`).join("") + "<option>Other</option>";
 
   /* ---------- Preloader ---------- */
   const hidePre = () => $("#preloader").classList.add("done");
-  window.addEventListener("load", () => setTimeout(hidePre, 400));
+  if (document.readyState === "complete") setTimeout(hidePre, 300);
+  else window.addEventListener("load", () => setTimeout(hidePre, 400));
   setTimeout(hidePre, 3500); // safety
 
   /* ---------- Nav ---------- */

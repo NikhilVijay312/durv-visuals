@@ -85,7 +85,7 @@
     const c = gh();
     $("#banner").hidden = !!c;
     if (c) { $("#ghOwner").value = c.owner; $("#ghRepo").value = c.repo; $("#ghBranch").value = c.branch; $("#ghToken").value = c.token; }
-    loadGallery();
+    loadGallery(); loadSite();
   }
 
   /* ---------- Upload queue ---------- */
@@ -229,7 +229,7 @@
       if (!r.ok) throw new Error(j.message);
       if (j.permissions && !j.permissions.push) throw new Error("Token ke paas write (Contents) permission nahi hai");
       st.style.color = "var(--green)"; st.textContent = `✓ Connected to ${j.full_name}`;
-      $("#banner").hidden = true; loadGallery();
+      $("#banner").hidden = true; loadGallery(); loadSite();
     } catch (err) { st.style.color = "var(--red)"; st.textContent = "✗ " + err.message; }
   };
   $("#ghClear").onclick = () => { localStorage.removeItem("gh"); $("#ghForm").reset(); $("#ghStatus").textContent = "Disconnected"; $("#banner").hidden = false; };
@@ -239,5 +239,52 @@
     a.href = URL.createObjectURL(new Blob([JSON.stringify(items, null, 2)], { type: "application/json" }));
     a.download = "gallery.json"; a.click();
   };
+  /* ---------- Site customize (data/site.json) ---------- */
+  const SITE_PATH = "data/site.json";
+  let site = {}, siteSha = null, upTarget = null;
+  const siteForm = $("#siteForm");
+  async function loadSite() {
+    try {
+      if (gh()) { const f = await api(SITE_PATH); siteSha = f.sha; site = JSON.parse(textFromB64(f.content)); }
+      else site = await (await fetch(SITE_PATH + "?v=" + Date.now())).json();
+    } catch (e) { if (String(e.message).startsWith("404")) { site = {}; siteSha = null; } else toast("Site settings load error: " + e.message, true); }
+    site = Object.assign({}, S, site);
+    [...siteForm.elements].forEach(el => { if (el.name) el.value = site[el.name] ?? ""; });
+    refreshPrev();
+  }
+  function refreshPrev() {
+    document.querySelectorAll("[data-prev]").forEach(img => { const v = siteForm.elements[img.dataset.prev].value.trim(); img.src = v ? srcUrl(v) : ""; });
+  }
+  siteForm.addEventListener("input", e => { if (e.target.name === "heroImage" || e.target.name === "aboutImage") refreshPrev(); });
+  siteForm.addEventListener("click", e => { const k = e.target.dataset.upimg; if (k) { upTarget = k; $("#siteImgFile").click(); } });
+  $("#siteImgFile").onchange = async e => {
+    const file = e.target.files[0]; e.target.value = "";
+    if (!file || !upTarget) return;
+    if (!gh()) return toast("Pehle Settings me GitHub connect karo", true);
+    const btn = siteForm.querySelector(`[data-upimg="${upTarget}"]`); btn.disabled = true; btn.textContent = "Uploading…";
+    try {
+      const blob = /gif|svg/.test(file.type) ? file : await compress(file, upTarget === "heroImage" ? 2400 : 1600);
+      const path = `images/${upTarget === "heroImage" ? "hero" : "about"}-${Date.now()}.jpg`;
+      await api(path, { method: "PUT", body: { message: `Upload ${path}`, content: await blobToB64(blob) } });
+      siteForm.elements[upTarget].value = path; refreshPrev();
+      toast("✓ Photo upload ho gayi — ab Save Site dabao");
+    } catch (err) { toast(err.message, true); }
+    btn.disabled = false; btn.textContent = "⬆ Upload";
+  };
+  $("#saveSite").onclick = async () => {
+    if (!gh()) return toast("Pehle Settings me GitHub connect karo", true);
+    const out = {};
+    [...siteForm.elements].forEach(el => { if (el.name) out[el.name] = el.type === "number" ? (el.value === "" ? "" : +el.value) : el.value.trim(); });
+    if (!out.brand) return toast("Brand name khali nahi ho sakta", true);
+    out.whatsapp = String(out.whatsapp).replace(/\D/g, "");
+    const btn = $("#saveSite"); btn.disabled = true;
+    try {
+      const res = await api(SITE_PATH, { method: "PUT", body: { message: "Update site settings", content: b64FromText(JSON.stringify(out, null, 2) + "\n"), ...(siteSha ? { sha: siteSha } : {}) } });
+      siteSha = res.content.sha; site = out;
+      toast("💾 Site save ho gayi! 1–2 min me live dikhega.");
+    } catch (err) { toast(err.message, true); }
+    btn.disabled = false;
+  };
+
   if (sessionStorage.getItem("adm") === "1") start();
 })();

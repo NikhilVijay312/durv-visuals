@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Krishna Visuals — Cinematic Visual Storyteller</title>
+  <title>Durv Visuals — Cinematic Visual Storyteller</title>
   <meta name="description" content="Wedding, Pre-Wedding, Commercial, Corporate & Social Media films. Cinematic visual storytelling studio based in Indore." />
-  <meta property="og:title" content="Krishna Visuals — Cinematic Visual Storyteller" />
+  <meta property="og:title" content="Durv Visuals — Cinematic Visual Storyteller" />
   <meta property="og:description" content="We turn moments into cinematic stories." />
   <meta name="theme-color" content="#0b0b0c" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>" />
@@ -17,14 +17,14 @@
 <body>
 
   <!-- Preloader -->
-  <div id="preloader"><div class="pl-inner"><span class="pl-logo" data-brand>Krishna Visuals</span><span class="pl-bar"></span></div></div>
+  <div id="preloader"><div class="pl-inner"><span class="pl-logo" data-brand>Durv Visuals</span><span class="pl-bar"></span></div></div>
 
   <!-- Custom cursor (desktop) -->
   <div class="cursor-dot"></div><div class="cursor-ring"></div>
 
   <!-- NAV -->
   <header class="nav" id="nav">
-    <a href="#home" class="logo"><span data-brand>Krishna Visuals</span><i>.</i></a>
+    <a href="#home" class="logo"><span data-brand>Durv Visuals</span><i>.</i></a>
     <nav class="nav-links" id="navLinks">
       <a href="#about">About</a>
       <a href="#services">Services</a>
@@ -42,8 +42,8 @@
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <p class="eyebrow reveal">Hello —</p>
-      <h1 class="reveal">We Turn <em>Moments</em><br />Into Cinematic Stories</h1>
-      <p class="hero-services reveal">Wedding · Pre-Wedding · Commercial · Corporate · Social Media</p>
+      <h1 class="reveal" id="heroTitle">We Turn <em>Moments</em><br />Into Cinematic Stories</h1>
+      <p class="hero-services reveal" id="heroSub">Wedding · Pre-Wedding · Commercial · Corporate · Social Media</p>
       <div class="hero-btns reveal">
         <button class="btn" id="showreelBtn">▶ Watch Showreel</button>
         <a href="#contact" class="btn btn-ghost">Hire Us</a>
@@ -62,19 +62,21 @@
   <section class="section about" id="about">
     <div class="container about-grid">
       <div class="about-img reveal">
-        <img src="https://picsum.photos/seed/studio-lens/800/1000" alt="Behind the lens" loading="lazy" />
-        <div class="about-badge"><strong>3+</strong><span>Years of<br/>Visual Stories</span></div>
+        <img id="aboutImg" src="https://picsum.photos/seed/studio-lens/800/1000" alt="Behind the lens" loading="lazy" />
+        <div class="about-badge"><strong id="yearsBadge">3+</strong><span>Years of<br/>Visual Stories</span></div>
       </div>
       <div class="about-text">
-        <p class="eyebrow reveal">About <span data-brand>Krishna Visuals</span></p>
+        <p class="eyebrow reveal">About <span data-brand>Durv Visuals</span></p>
         <h2 class="reveal">The Story Behind <em>the Lens</em></h2>
-        <p class="reveal">Storytelling is our passion. Founded by Krishna, a dedicated visual artist, the studio exists to turn ordinary moments into cinematic experiences.</p>
-        <p class="reveal">From intimate weddings to bold commercials and corporate films, we craft every frame with emotion, light and rhythm — so your story feels as big as it felt in the moment.</p>
-        <p class="reveal">Every project is a journey, and every client is the hero of their own story.</p>
+        <div id="aboutText" class="reveal">
+          <p>Storytelling is our passion. Founded by <span data-founder>Durv</span>, a dedicated visual artist, the studio exists to turn ordinary moments into cinematic experiences.</p>
+          <p>From intimate weddings to bold commercials and corporate films, we craft every frame with emotion, light and rhythm — so your story feels as big as it felt in the moment.</p>
+          <p>Every project is a journey, and every client is the hero of their own story.</p>
+        </div>
         <div class="stats reveal">
-          <div><strong class="count" data-to="500">0</strong><b>+</b><span>Films Crafted</span></div>
-          <div><strong class="count" data-to="50">0</strong><b>+</b><span>Happy Clients</span></div>
-          <div><strong class="count" data-to="3">0</strong><b>+</b><span>Years</span></div>
+          <div><strong class="count" id="statFilms" data-to="500">0</strong><b>+</b><span>Films Crafted</span></div>
+          <div><strong class="count" id="statClients" data-to="50">0</strong><b>+</b><span>Happy Clients</span></div>
+          <div><strong class="count" id="statYears" data-to="3">0</strong><b>+</b><span>Years</span></div>
         </div>
       </div>
     </div>
@@ -199,9 +201,9 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container footer-inner">
-      <div><a href="#home" class="logo"><span data-brand>Krishna Visuals</span><i>.</i></a><p class="muted" data-tagline></p></div>
+      <div><a href="#home" class="logo"><span data-brand>Durv Visuals</span><i>.</i></a><p class="muted" data-tagline></p></div>
       <div class="socials" id="socials"></div>
-      <p class="muted small">© <span id="year"></span> <span data-brand>Krishna Visuals</span>. Crafted with love &amp; light.</p>
+      <p class="muted small">© <span id="year"></span> <span data-brand>Durv Visuals</span>. Crafted with love &amp; light.</p>
     </div>
   </footer>
 

@@ -77,3 +77,13 @@ input:focus,select:focus{outline:0;border-color:var(--gold)}
 .toast.bad{border-color:var(--red)}
 
 @media(max-width:700px){.video-form{grid-template-columns:1fr}.top{justify-content:center}}
+.site-form{display:grid;gap:1.5rem;margin-top:1.5rem}
+.site-form fieldset{border:1px solid var(--line);border-radius:12px;padding:1.2rem 1.4rem 1.4rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem}
+.site-form legend{padding:0 .5rem;color:var(--gold);font-family:"Playfair Display",serif;font-size:1.1rem}
+.site-form label{display:flex;flex-direction:column;gap:.3rem;font-size:.85rem;color:var(--muted)}
+.site-form .wide{grid-column:1/-1}
+textarea{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:.7rem .9rem;color:var(--text);font:inherit;width:100%;resize:vertical}
+textarea:focus{outline:0;border-color:var(--gold)}
+.img-field{display:flex;gap:.7rem;align-items:center}
+.img-field img{width:90px;height:60px;object-fit:cover;border-radius:6px;background:#000;flex-shrink:0}
+.img-field img:not([src]),.img-field img[src=""]{visibility:hidden}

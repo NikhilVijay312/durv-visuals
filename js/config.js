@@ -2,7 +2,7 @@
    SITE CONFIG — apni details yahan badlo (sirf is file ko edit karo)
    ========================================================= */
 window.SITE = {
-  brand: "Krishna Visuals",
+  brand: "Durv Visuals",
   tagline: "Cinematic Visual Storyteller",
   location: "Indore, Madhya Pradesh, India",
 

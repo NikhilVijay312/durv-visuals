@@ -1,0 +1,21 @@
+{
+  "brand": "Durv Visuals",
+  "founder": "Durv",
+  "tagline": "Cinematic Visual Storyteller",
+  "location": "Indore, Madhya Pradesh, India",
+  "email": "youremail@example.com",
+  "phone": "+91 00000 00000",
+  "whatsapp": "910000000000",
+  "instagram": "https://instagram.com/",
+  "youtube": "https://youtube.com/",
+  "linkedin": "",
+  "showreel": "",
+  "heroTitle": "We Turn *Moments*\nInto Cinematic Stories",
+  "heroSub": "Wedding · Pre-Wedding · Commercial · Corporate · Social Media",
+  "heroImage": "https://picsum.photos/seed/cinema-hero/1920/1080",
+  "aboutImage": "https://picsum.photos/seed/studio-lens/800/1000",
+  "aboutText": "Storytelling is our passion. Founded by {founder}, a dedicated visual artist, the studio exists to turn ordinary moments into cinematic experiences.\n\nFrom intimate weddings to bold commercials and corporate films, we craft every frame with emotion, light and rhythm — so your story feels as big as it felt in the moment.\n\nEvery project is a journey, and every client is the hero of their own story.",
+  "statFilms": 500,
+  "statClients": 50,
+  "statYears": 3
+}
